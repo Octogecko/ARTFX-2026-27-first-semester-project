@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,11 +24,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isChanging = false;
     private Vector2 changingDirection;
 
+    // References
+
     private Rigidbody2D _rb;
+    private Scimitar scimitar;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        scimitar = transform.GetChild(0).GetComponent<Scimitar>();
         speed = baseSpeed;
     }
 
@@ -112,28 +117,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && !scimitar.attacking)
+        {
+            scimitar.Attack();
+        }
+    }
+
     private void ChangeDirection(Vector2 newDirection)
     {
         direction = newDirection;
-        /*if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
-        {
-            GetComponent<Animator>().SetBool("back", false);
-            GetComponent<Animator>().SetBool("side", true);
-            GetComponent<SpriteRenderer>().flipX = direction.x <= 0;
-        }
-        else
-        {
-            if (direction.y >= 0)
-            {
-                GetComponent<Animator>().SetBool("back", true);
-                GetComponent<Animator>().SetBool("side", false);
-            }
-            else
-            {
-                GetComponent<Animator>().SetBool("back", false);
-                GetComponent<Animator>().SetBool("side", false);
-            }
-            GetComponent<SpriteRenderer>().flipX = false;
-        }*/
+        float alpha = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, alpha);
     }
 }
