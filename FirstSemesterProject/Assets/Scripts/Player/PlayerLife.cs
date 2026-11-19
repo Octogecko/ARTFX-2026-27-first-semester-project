@@ -20,4 +20,14 @@ public class PlayerLife : MonoBehaviour
     {
         hp--;
     }
+
+    public int GetHp()
+    {
+        return hp;
+    }
+
+    public void SetHp(int savedHp)
+    {
+        hp = savedHp;
+    }
 }
