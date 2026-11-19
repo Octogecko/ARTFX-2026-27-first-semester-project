@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,11 +24,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isChanging = false;
     private Vector2 changingDirection;
 
+    // References
+
     private Rigidbody2D _rb;
+    private Scimitar scimitar;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        scimitar = transform.GetChild(0).GetComponent<Scimitar>();
         speed = baseSpeed;
     }
 
@@ -112,18 +117,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && !scimitar.attacking)
+        {
+            scimitar.Attack();
+        }
+    }
+
     private void ChangeDirection(Vector2 newDirection)
     {
         direction = newDirection;
-        /*if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
+        if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
         {
-            GetComponent<Animator>().SetBool("back", false);
-            GetComponent<Animator>().SetBool("side", true);
-            GetComponent<SpriteRenderer>().flipX = direction.x <= 0;
+            transform.rotation = new Quaternion(transform.rotation.x, Convert.ToInt32(direction.x <= 0) * 180, transform.rotation.z, transform.rotation.w);
         }
         else
         {
-            if (direction.y >= 0)
+            /*if (direction.y >= 0)
             {
                 GetComponent<Animator>().SetBool("back", true);
                 GetComponent<Animator>().SetBool("side", false);
@@ -132,8 +143,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 GetComponent<Animator>().SetBool("back", false);
                 GetComponent<Animator>().SetBool("side", false);
-            }
-            GetComponent<SpriteRenderer>().flipX = false;
-        }*/
+            }*/
+            transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
+        }
     }
 }

@@ -171,87 +171,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5640994983027286168, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.87539
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640994983027286168, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.13072
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640994983027286168, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5938068539986978580, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.87539
-      objectReference: {fileID: 0}
-    - target: {fileID: 5938068539986978580, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.13072
-      objectReference: {fileID: 0}
-    - target: {fileID: 5938068539986978580, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
     - target: {fileID: 6881087052741904664, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 2061837557}
-    - target: {fileID: 8248555730570646736, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8248555730570646736, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8248555730570646736, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8248555730570646736, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4042829452457551044, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2085731970}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
 --- !u!4 &2061837557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6427183098148776496, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
   m_PrefabInstance: {fileID: 2277888533549472660}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2085731967 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4042829452457551044, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
-  m_PrefabInstance: {fileID: 1077086799}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2085731970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085731967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
-  TrackerSettings:
-    BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
-    AngularDampingMode: 0
-    RotationDamping: {x: 1, y: 1, z: 1}
-    QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 0, z: -10}
 --- !u!1001 &2277888533549472660
 PrefabInstance:
   m_ObjectHideFlags: 0
