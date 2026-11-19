@@ -21,6 +21,5 @@ public class QuitButtonScript : MonoBehaviour
         #else
         Application.Quit();
         #endif
-
     }
 }
