@@ -44,6 +44,7 @@ public class SaveController : MonoBehaviour
     public void LoadGame()
     {
         SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveLocation));
+        StartCoroutine(LoadSaveFile(saveData));
     }
 
     private IEnumerator LoadSaveFile(SaveData saveData)
