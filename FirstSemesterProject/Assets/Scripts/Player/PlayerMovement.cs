@@ -128,23 +128,7 @@ public class PlayerMovement : MonoBehaviour
     private void ChangeDirection(Vector2 newDirection)
     {
         direction = newDirection;
-        if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
-        {
-            transform.rotation = new Quaternion(transform.rotation.x, Convert.ToInt32(direction.x <= 0) * 180, transform.rotation.z, transform.rotation.w);
-        }
-        else
-        {
-            /*if (direction.y >= 0)
-            {
-                GetComponent<Animator>().SetBool("back", true);
-                GetComponent<Animator>().SetBool("side", false);
-            }
-            else
-            {
-                GetComponent<Animator>().SetBool("back", false);
-                GetComponent<Animator>().SetBool("side", false);
-            }*/
-            transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
-        }
+        float alpha = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, alpha);
     }
 }
