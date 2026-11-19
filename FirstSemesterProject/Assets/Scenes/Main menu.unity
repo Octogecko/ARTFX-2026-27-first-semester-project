@@ -702,7 +702,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 897363061}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2005250118}
+        m_TargetAssemblyTypeName: QuitButtonScript, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &897363061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1118,7 @@ GameObject:
   - component: {fileID: 2005250112}
   - component: {fileID: 2005250116}
   - component: {fileID: 2005250117}
+  - component: {fileID: 2005250118}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1225,6 +1238,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CreditsScrip
   credit: {fileID: 801493846}
+--- !u!114 &2005250118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005250111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d47a37627e2c4147b5bcdb60b38abee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuitButtonScript
+  quit: {fileID: 897363060}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
