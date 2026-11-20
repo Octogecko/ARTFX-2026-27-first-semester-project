@@ -16,6 +16,6 @@ public class CreditsScrip : MonoBehaviour
     }
     public void ChangeScene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("CreditsScene");
     }
 }
