@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     // References
 
+    public GameObject PauseMenu;
     private Rigidbody2D _rb;
     private Scimitar scimitar;
 
@@ -122,6 +123,15 @@ public class PlayerMovement : MonoBehaviour
         if (context.started && !scimitar.attacking)
         {
             scimitar.Attack();
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PauseMenu.SetActive(!PauseMenu.activeSelf);
+            Time.timeScale = Convert.ToInt16(Time.timeScale == 0);
         }
     }
 
