@@ -18,6 +18,6 @@ public class BackMMScript : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu");
     }
 }
