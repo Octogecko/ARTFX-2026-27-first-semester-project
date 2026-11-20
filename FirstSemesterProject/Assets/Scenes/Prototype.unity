@@ -584,17 +584,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6427183098148776496, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
   m_PrefabInstance: {fileID: 2277888533549472660}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2094645702 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -1432871428341596050, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-  m_PrefabInstance: {fileID: 2277888533549472660}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e43a735caf5da5749af25738d3ced44b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1001 &2277888533549472660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -607,46 +596,6 @@ PrefabInstance:
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 2048802036}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
-      value: 7d9d3e06-588d-4f15-b978-e1de7aecf2a7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
-      value: 'Gameplay/Pause[/Keyboard/escape]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2094645702}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlayerMovement, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5659632016902730993, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
-      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6427183098148776496, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.48481
