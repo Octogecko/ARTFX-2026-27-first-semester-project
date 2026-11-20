@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 24996123}
   - component: {fileID: 24996122}
   - component: {fileID: 24996121}
+  - component: {fileID: 24996127}
   - component: {fileID: 24996120}
   m_Layer: 5
   m_Name: Pause
@@ -263,6 +264,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &24996127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24996119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382574beaa595fa41adca63a7ba133cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResumeGameScript
+  resume: {fileID: 1105142991}
 --- !u!1 &717642544
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +420,7 @@ GameObject:
   - component: {fileID: 721611394}
   - component: {fileID: 721611393}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: EventSystemPause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1105142989}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &721611395
@@ -1340,9 +1354,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 24996122}
-        m_TargetAssemblyTypeName: LoadGame, Assembly-CSharp
-        m_MethodName: Loading
+      - m_Target: {fileID: 24996127}
+        m_TargetAssemblyTypeName: ResumeGameScript, Assembly-CSharp
+        m_MethodName: GameResumed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1983,7 +1997,7 @@ PrefabInstance:
     - target: {fileID: -1432871428341596050, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
       propertyPath: PauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 24996119}
     - target: {fileID: -1432871428341596050, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2285,12 +2299,17 @@ PrefabInstance:
     - target: {fileID: 6881087052741904664, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2130978860}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 247140c028ee3c34299f47b24a59897d, type: 3}
+--- !u!4 &2130978860 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6427183098148776496, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
+  m_PrefabInstance: {fileID: 1769957417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
