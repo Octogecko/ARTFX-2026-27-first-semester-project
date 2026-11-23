@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    [SerializeField] private int startingHP = 3;
-    [SerializeField] private int maxHP = 3;
+    /*[SerializeField] private int startingHP = 3;
+    [SerializeField] private int maxHP = 3;*/
 
     public Canvas GameOver;
     public GameObject hearts;
@@ -16,12 +16,12 @@ public class PlayerLife : MonoBehaviour
 
     void Start()
     {
-        hp = startingHP;
         for (int i = 0; i < hearts.transform.childCount; i++)
         {
             listhearts.Add(hearts.transform.GetChild(i).GetChild(0).gameObject);
         }
         hp = listhearts.Count;
+        Debug.Log(listhearts.Count);
     }
     
     public void Heal()
@@ -46,6 +46,24 @@ public class PlayerLife : MonoBehaviour
     public void Death()
     {
         GameOver.GetComponent<Canvas>().enabled = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Hurt();
+            Debug.Log(hp);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Hurt();
+            Debug.Log(hp);
+        }
     }
 
     public int GetHp()
