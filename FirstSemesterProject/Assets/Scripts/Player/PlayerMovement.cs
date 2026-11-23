@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Speed & direction
+    [Header("Speed & direction")]
+
     private float speed;
     [SerializeField] private float baseSpeed = 3f;
     [SerializeField] private float maxSpeed = 6f;
@@ -18,13 +19,19 @@ public class PlayerMovement : MonoBehaviour
     private bool returningStick = false;
     private float lastMagnitude = 0f;
 
-    // Time
+    [Header("Time")]
+
     [SerializeField] private float timeBeforeDirectionChange = 0.08f;
     private float changeTimer;
     private bool isChanging = false;
     private Vector2 changingDirection;
 
-    // References
+    [Header("Switches")]
+
+    [SerializeField] private GameObject grapplingHook;
+    [SerializeField] private bool grapplingHookUnlocked;
+
+    [Header("References")]
 
     public GameObject PauseMenu;
     private Rigidbody2D _rb;
@@ -123,6 +130,14 @@ public class PlayerMovement : MonoBehaviour
         if (context.started && !scimitar.attacking)
         {
             scimitar.Attack();
+        }
+    }
+
+    public void OnGrapplingHook(InputAction.CallbackContext context)
+    {
+        if (context.started && grapplingHookUnlocked)
+        {
+            Instantiate(grapplingHook, transform.position, transform.rotation);
         }
     }
 

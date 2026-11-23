@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 775112026336393157}
   - component: {fileID: 1428057065658397816}
   - component: {fileID: -1432871428341596050}
-  - component: {fileID: 5659632016902730993}
   - component: {fileID: 6929902144012400160}
+  - component: {fileID: 5659632016902730993}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -188,6 +188,25 @@ MonoBehaviour:
   acceleration: 10
   deceleration: 10
   timeBeforeDirectionChange: 0.08
+  grapplingHook: {fileID: 2332255821547202774, guid: dc6a2427dd3963045991d81e38cc70d3, type: 3}
+  grapplingHookUnlocked: 0
+  PauseMenu: {fileID: 0}
+--- !u!114 &6929902144012400160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8122748249362387926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902cc2a72f0f89c44a04490dcd397d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerLife
+  startingHP: 3
+  maxHP: 3
+  potionLevel: 0
+  potionPowerPerLevel: 01000000020000000300000004000000
 --- !u!114 &5659632016902730993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,25 +264,59 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9a34026d-072f-4935-a001-1b5a3b0f0863
     m_ActionName: 'Gameplay/Attack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1432871428341596050}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7d9d3e06-588d-4f15-b978-e1de7aecf2a7
+    m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6929902144012400160}
+        m_TargetAssemblyTypeName: PlayerLife, Assembly-CSharp
+        m_MethodName: OnDrinkPotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 92bfc1e6-9179-49c3-b5ea-5cd582bb572d
+    m_ActionName: 'Gameplay/Drink Potion[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1432871428341596050}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnGrapplingHook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 997bb537-5225-4e52-8332-c20221340d65
+    m_ActionName: 'Gameplay/Grappling Hook[/Keyboard/a]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6929902144012400160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122748249362387926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902cc2a72f0f89c44a04490dcd397d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerLife
-  startingHP: 3
-  maxHP: 3
 --- !u!1 &8901368573140054851
 GameObject:
   m_ObjectHideFlags: 0
