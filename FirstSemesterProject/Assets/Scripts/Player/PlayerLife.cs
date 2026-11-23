@@ -10,37 +10,44 @@ public class PlayerLife : MonoBehaviour
 
     public Canvas GameOver;
     public GameObject hearts;
-    List<GameObject> listhearts = new List<GameObject>();
 
+
+    List<List> listHearts = new List<List>();
+    List<Image> heart = new List<Image>();
+
+
+    private int heartImage;
     private int hp;
 
     void Start()
     {
         for (int i = 0; i < hearts.transform.childCount; i++)
         {
-            listhearts.Add(hearts.transform.GetChild(i).GetChild(0).gameObject);
+            heart.Add(hearts.transform.GetChild(i).GetComponent<Image>());
+            listHearts.Add(heart);
         }
-        hp = listhearts.Count;
-        Debug.Log(listhearts.Count);
+        hp = listHearts.Count;
+        Debug.Log(listHearts.Count);
     }
     
     public void Heal()
     {
-        listhearts[hp].GetComponent<Image>().enabled = true;
+        listHearts[hp[2]].GetComponent<Image>().enabled = true;
         hp += 1;
     }
 
     public void Hurt()
     {
-        hp -= 1;
-        if (hp <= 0)
+        
+        if (hp - 1 <= 0)
         {
             Death();
         }
         else
         {
-            listhearts[hp].GetComponent<Image>().enabled = false;
+            listHeartImage[hp+3].GetComponent<Image>().enabled = false;
         }
+        hp -= 1;
     }
 
     public void Death()
@@ -49,15 +56,6 @@ public class PlayerLife : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Hurt();
-            Debug.Log(hp);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
