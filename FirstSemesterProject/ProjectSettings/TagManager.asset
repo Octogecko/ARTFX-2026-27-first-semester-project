@@ -5,14 +5,17 @@ TagManager:
   serializedVersion: 3
   tags:
   - Scimitar
+  - GrapplingHook
+  - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Lockable
   - Water
   - UI
-  - 
+  - Wall
   - 
   - 
   - 
