@@ -11,11 +11,9 @@ public class PlayerLife : MonoBehaviour
     public Canvas GameOver;
     public GameObject hearts;
 
-
-    List<List> listHearts = new List<List>();
     List<Image> heart = new List<Image>();
-
-
+    List<List<Image>> listHearts;
+   
     private int heartImage;
     private int hp;
 
@@ -23,36 +21,56 @@ public class PlayerLife : MonoBehaviour
     {
         for (int i = 0; i < hearts.transform.childCount; i++)
         {
-            heart.Add(hearts.transform.GetChild(i).GetComponent<Image>());
+            heart.Add(hearts.transform.GetChild(i).GetComponentInChildren<Image>());
             listHearts.Add(heart);
         }
         hp = listHearts.Count;
+        heartImage = heart.Count * listHearts.Count;
         Debug.Log(listHearts.Count);
+        Debug.Log(heart.Count);
+        Debug.Log(heartImage);
     }
     
     public void Heal()
     {
-        listHearts[hp[2]].GetComponent<Image>().enabled = true;
+        listHearts[hp][heartImage].GetComponent<Image>().enabled = true;
         hp += 1;
     }
 
     public void Hurt()
     {
-        
-        if (hp - 1 <= 0)
+        foreach (List<Image> l in listHearts)
         {
-            Death();
-        }
-        else
-        {
-            listHeartImage[hp+3].GetComponent<Image>().enabled = false;
-        }
-        hp -= 1;
-    }
+            foreach (Image image in l)
+            {
+                for (int i = 2; i >= 0; i--)
+                {
+                    if (i == 0)
+                    {
+                        hp -= 1;
+                    }
+                    else
+                    {
+                        image.GetComponent<Image>().enabled = false;
+                    }
+                }
+            }
 
-    public void Death()
-    {
-        GameOver.GetComponent<Canvas>().enabled = true;
+            if (hp <= 0)
+            {
+                GameOver.GetComponent<Canvas>().enabled = true;
+            }
+
+            /*if (hp - 1 <= 0)
+            {
+                Death();
+            }
+            else
+            {
+                //listHearts[hp+3].GetComponent<Image>().enabled = false;
+            }
+            hp -= 1;*/
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
