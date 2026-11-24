@@ -1,3 +1,6 @@
+using System.Linq;
+using TMPro;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class Chain : MonoBehaviour
@@ -7,7 +10,9 @@ public class Chain : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] float boxHeight = 2;
     [SerializeField] float endingEnemyDistance = 1f;
+    [SerializeField] float endingWallDistance = 1f;
     [SerializeField] LayerMask lockableObjects;
+    [SerializeField] LayerMask walls;
 
     private SpriteRenderer spriteRenderer;
     private GameObject player;
@@ -16,6 +21,7 @@ public class Chain : MonoBehaviour
     private GameObject targetObject;
     private float distanceToTarget;
     private bool dragging = false;
+    private bool approaching = false;
     private float opposite;
     private float adjacent;
     private float alpha;
@@ -26,13 +32,13 @@ public class Chain : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         targetObject = ClosestLockableGameObject();
-        if (targetObject != null)
+        if (targetObject == null || targetObject.CompareTag("Wall"))
         {
-            target = targetObject.transform.position;
+            target = transform.position - transform.right * range;
         }
         else
         {
-            target = transform.position - transform.right * range;
+            target = targetObject.transform.position;
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -45,7 +51,7 @@ public class Chain : MonoBehaviour
 
         if (targetObject != null)
         {
-            distanceToTarget = Mathf.Abs((transform.position - targetObject.transform.position).magnitude);
+            distanceToTarget = Vector3.Distance(targetObject.transform.position, transform.position);
         }
         else
         {
@@ -58,15 +64,10 @@ public class Chain : MonoBehaviour
         }
         else
         {
-            spriteRenderer.size = new Vector2(spriteRenderer.size.x - expandSpeed * Time.deltaTime, spriteRenderer.size.y);
+            spriteRenderer.size = new Vector2(spriteRenderer.size.x - expandSpeed * Time.deltaTime, spriteRenderer.size.y); 
         }
 
-        opposite = transform.position.y - target.y;
-        adjacent = transform.position.x - target.x;
-        alpha = Mathf.Atan2(opposite, adjacent) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, alpha);
-
-        if (Mathf.Abs(spriteRenderer.size.x) >= distanceToTarget)
+        if (Mathf.Abs(spriteRenderer.size.x) >= distanceToTarget && (targetObject == null || !targetObject.CompareTag("Wall")))
         {
             reachedTarget = true;
             if (targetObject != null && targetObject.CompareTag("Enemy") && !dragging)
@@ -74,7 +75,14 @@ public class Chain : MonoBehaviour
                 DragEnemy(targetObject);
             }
         }
-        else if (Mathf.Abs(spriteRenderer.size.x) < 0.5 && reachedTarget)
+
+        opposite = transform.position.y - target.y;
+        adjacent = transform.position.x - target.x;
+        alpha = Mathf.Atan2(opposite, adjacent) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, alpha);
+
+        
+        if (Mathf.Abs(spriteRenderer.size.x) < 0.5 && reachedTarget)
         {
             Destroy(transform.parent.gameObject);
         }
@@ -90,19 +98,44 @@ public class Chain : MonoBehaviour
         {
             dragging = false;
         }
+
+        if (approaching && distanceToTarget > endingWallDistance)
+        {
+            player.transform.position -= transform.right * expandSpeed * Time.fixedDeltaTime;
+        }
+        else if (approaching && distanceToTarget <= endingWallDistance)
+        {
+            approaching = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+        {
+            if (collision.gameObject == targetObject && targetObject.CompareTag("Wall"))
+            {
+                reachedTarget = true;
+                ApproachTarget(targetObject);
+            }
+        }
     }
 
     private void OnDestroy()
     {
-        if (targetObject != null)
+        if (targetObject != null && !targetObject.CompareTag("Wall"))
         {
             targetObject.GetComponent<IEnemyMovement>().SetMovementEnabled(true);
+        }
+        else if (targetObject != null && targetObject.CompareTag("Wall"))
+        {
+            player.GetComponent<PlayerMovement>().enabled = true;
         }
     }
 
     private GameObject ClosestLockableGameObject()
     {
-        Collider2D[] objects = Physics2D.OverlapBoxAll(transform.position - transform.right * (range / 2), new Vector2(range, boxHeight), transform.rotation.eulerAngles.z, lockableObjects);
+        Collider2D[] objects = Physics2D.OverlapBoxAll(transform.position - transform.right * (range / 2), new Vector2(range, boxHeight), transform.rotation.eulerAngles.z, lockableObjects).Concat(Physics2D.OverlapBoxAll(transform.position - transform.right * (range / 2), new Vector2(range, 0.72f), transform.rotation.eulerAngles.z, walls)).ToArray();
         if (objects.Length == 0)
         {
             return null;
@@ -127,5 +160,11 @@ public class Chain : MonoBehaviour
     {
         targetObject.GetComponent<IEnemyMovement>().SetMovementEnabled(false);
         dragging = true;
+    }
+
+    private void ApproachTarget(GameObject target)
+    {
+        player.GetComponent<PlayerMovement>().enabled = false;
+        approaching = true;
     }
 }
