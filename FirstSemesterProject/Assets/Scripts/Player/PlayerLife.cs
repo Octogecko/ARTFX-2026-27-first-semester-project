@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,65 +10,62 @@ public class PlayerLife : MonoBehaviour
     public Canvas GameOver;
     public GameObject hearts;
 
-    List<Image> heart = new List<Image>();
-    List<List<Image>> listHearts;
+    //List<Image> heart = new List<Image>();
+    //List<List<Image>> listHearts = new List<List<Image>>();
    
     private int heartImage;
-    private int hp;
+    public int hp;
 
     void Start()
     {
+        /*Debug.Log("childCount: " + hearts.transform.childCount);
         for (int i = 0; i < hearts.transform.childCount; i++)
         {
-            heart.Add(hearts.transform.GetChild(i).GetComponentInChildren<Image>());
+            // add heart in heart liste
+            var child = hearts.transform.GetChild(i);
+            Debug.Log(child);
+            for (int j = 0;  j < child.childCount; j++)
+            {
+                Image image = child.GetChild(j).GetComponent<Image>();
+                listHearts[i].Add(image);
+                heart.Add(image);
+            }
             listHearts.Add(heart);
         }
         hp = listHearts.Count;
+
         heartImage = heart.Count * listHearts.Count;
-        Debug.Log(listHearts.Count);
-        Debug.Log(heart.Count);
-        Debug.Log(heartImage);
+        Debug.Log("Il y a " + listHearts.Count + " listes dans listHeart.");
+        Debug.Log("Il y a " + heart.Count + " d'elements images dans une liste heart");
+        Debug.Log("il y a en tout " + heartImage + " images.");*/
+
+        heartImage = 2;
     }
     
     public void Heal()
     {
-        listHearts[hp][heartImage].GetComponent<Image>().enabled = true;
-        hp += 1;
+        Debug.Log("gaigned life !");
+        heartImage += 1;
+        if (heartImage > 2)
+        {
+            hp += 1;
+            heartImage = 1;           
+        }
+        hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = true;
     }
 
     public void Hurt()
     {
-        foreach (List<Image> l in listHearts)
+        hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = false;
+        heartImage -= 1;
+        if (heartImage == 0)
         {
-            foreach (Image image in l)
-            {
-                for (int i = 2; i >= 0; i--)
-                {
-                    if (i == 0)
-                    {
-                        hp -= 1;
-                    }
-                    else
-                    {
-                        image.GetComponent<Image>().enabled = false;
-                    }
-                }
-            }
-
-            if (hp <= 0)
-            {
-                GameOver.GetComponent<Canvas>().enabled = true;
-            }
-
-            /*if (hp - 1 <= 0)
-            {
-                Death();
-            }
-            else
-            {
-                //listHearts[hp+3].GetComponent<Image>().enabled = false;
-            }
-            hp -= 1;*/
+            hp -= 1;
+            heartImage = 2;
+        }
+        if (hp == 0)
+        {
+            GameOver.gameObject.SetActive(true);
         }
     }
 
@@ -79,6 +75,15 @@ public class PlayerLife : MonoBehaviour
         {
             Hurt();
             Debug.Log(hp);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Life"))
+        {
+            Heal();
+            collision.gameObject.SetActive(false);
         }
     }
 
