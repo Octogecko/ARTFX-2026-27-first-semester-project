@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    /*[SerializeField] private int startingHP = 3;
-    [SerializeField] private int maxHP = 3;*/
+    [SerializeField] private int startingHP = 3;
+    [SerializeField] private int maxHP = 3;
 
     public Canvas GameOver;
     public GameObject hearts;
@@ -46,12 +47,21 @@ public class PlayerLife : MonoBehaviour
     {
         Debug.Log("gaigned life !");
         heartImage += 1;
-        if (heartImage > 2)
+        if (heartImage > 2 && hp < maxHP)
         {
             hp += 1;
-            heartImage = 1;           
+            heartImage = 1;
+            hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = true;
         }
-        hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = true;
+        else if (heartImage <= 2 && hp < maxHP)
+        {
+            hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = true;
+        }
+        else 
+        {
+            hp = maxHP;
+        }
+           
     }
 
     public void Hurt()
@@ -65,8 +75,14 @@ public class PlayerLife : MonoBehaviour
         }
         if (hp == 0)
         {
-            GameOver.gameObject.SetActive(true);
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        hp = maxHP;
+        GameOver.gameObject.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
