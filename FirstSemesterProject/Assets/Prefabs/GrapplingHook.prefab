@@ -33,18 +33,6 @@ Transform:
   - {fileID: 6421996473524217438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1830438023149071098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2332255821547202774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced22a29d659d8243b53906534ce8fde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GapplingHookParent
 --- !u!1 &2407276530202672924
 GameObject:
   m_ObjectHideFlags: 0

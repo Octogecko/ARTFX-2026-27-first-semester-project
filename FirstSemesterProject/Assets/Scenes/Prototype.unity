@@ -1356,6 +1356,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -1432871428341596050, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -1432871428341596050, guid: 72f4b5643ebfa214ba9e27aec3dcf386, type: 3}
       propertyPath: grapplingHookUnlocked
       value: 1
       objectReference: {fileID: 0}
