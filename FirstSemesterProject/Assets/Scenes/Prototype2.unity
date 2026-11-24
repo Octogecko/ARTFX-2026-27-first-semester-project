@@ -194,6 +194,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397620293}
   m_CullTransparentMesh: 1
+--- !u!114 &425397851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5007868398273525480, guid: 7cb58e63a7e3e1d4b98e83f4bf1a6540, type: 3}
+  m_PrefabInstance: {fileID: 6493994152841734314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &584641160
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +455,7 @@ GameObject:
   - component: {fileID: 721611395}
   - component: {fileID: 721611394}
   - component: {fileID: 721611393}
+  - component: {fileID: 721611396}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -494,7 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1563179570}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &721611395
@@ -512,6 +524,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &721611396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721611392}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecbf4d073aad64547989e63bfd42ae5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  gameOver: {fileID: 622938397}
+  boutton: {fileID: 425397851}
 --- !u!1 &857446542
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +899,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451643407}
   m_CullTransparentMesh: 1
+--- !u!1 &1563179570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1372491915338522162, guid: aac82c6c4c35c6a469ff4d2f2e40095a, type: 3}
+  m_PrefabInstance: {fileID: 1778217080}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1769957417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1033,6 +1064,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1372491915338522162, guid: aac82c6c4c35c6a469ff4d2f2e40095a, type: 3}
+      propertyPath: m_Name
+      value: ResumeButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4300810638867137685, guid: aac82c6c4c35c6a469ff4d2f2e40095a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
