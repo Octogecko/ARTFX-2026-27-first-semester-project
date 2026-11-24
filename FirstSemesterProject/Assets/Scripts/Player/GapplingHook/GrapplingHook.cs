@@ -1,9 +1,7 @@
 using System.Linq;
-using TMPro;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
-public class Chain : MonoBehaviour
+public class GrapplingHook : MonoBehaviour
 {
     [SerializeField] float expandSpeed;
     [SerializeField] float xOffset;
