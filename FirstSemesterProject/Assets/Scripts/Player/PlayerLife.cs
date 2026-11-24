@@ -15,7 +15,7 @@ public class PlayerLife : MonoBehaviour
     //List<List<Image>> listHearts = new List<List<Image>>();
    
     private int heartImage;
-    public int hp;
+    int hp;
 
     void Start()
     {
@@ -39,7 +39,7 @@ public class PlayerLife : MonoBehaviour
         Debug.Log("Il y a " + listHearts.Count + " listes dans listHeart.");
         Debug.Log("Il y a " + heart.Count + " d'elements images dans une liste heart");
         Debug.Log("il y a en tout " + heartImage + " images.");*/
-
+        hp = maxHP;
         heartImage = 2;
     }
     
