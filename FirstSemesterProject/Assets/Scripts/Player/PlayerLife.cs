@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    [SerializeField] private int startingHP = 3;
+    [SerializeField] private int startingHP;
     [SerializeField] private int maxHP = 3;
 
     public Canvas GameOver;
@@ -16,6 +16,7 @@ public class PlayerLife : MonoBehaviour
    
     private int heartImage;
     int hp;
+    
 
     void Start()
     {
@@ -39,6 +40,10 @@ public class PlayerLife : MonoBehaviour
         Debug.Log("Il y a " + listHearts.Count + " listes dans listHeart.");
         Debug.Log("Il y a " + heart.Count + " d'elements images dans une liste heart");
         Debug.Log("il y a en tout " + heartImage + " images.");*/
+
+
+                //Ce qu'il faut faire pour la prochaine fois pour le player life (je n'en peux plus) 
+           // Dans ce start faire avec le load -> recupérer l'état des coeur en fonction des hp et du coup ou on en est avec "heartImage". -> a voir plus tard pour savoir comment l'implémenter... Sinon je vais crashout...
         hp = maxHP;
         heartImage = 2;
     }
