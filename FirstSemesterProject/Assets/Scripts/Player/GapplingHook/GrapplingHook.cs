@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class GrapplingHook : MonoBehaviour
 {
+    public float range;
     [SerializeField] float expandSpeed;
     [SerializeField] float xOffset;
-    [SerializeField] float range;
     [SerializeField] float boxHeight = 2;
     [SerializeField] float endingEnemyDistance = 1f;
     [SerializeField] float endingWallDistance = 1f;
@@ -29,7 +29,7 @@ public class GrapplingHook : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        targetObject = ClosestLockableGameObject();
+        if(!targetObject) targetObject = ClosestLockableGameObject();
         if (targetObject == null || targetObject.CompareTag("Wall"))
         {
             target = transform.position - transform.right * range;
@@ -152,6 +152,11 @@ public class GrapplingHook : MonoBehaviour
         }
 
         return closestObject.gameObject;
+    }
+
+    public void SetTarget(GameObject newTarget)
+    {
+        targetObject = newTarget;
     }
 
     private void DragEnemy(GameObject enemy)
