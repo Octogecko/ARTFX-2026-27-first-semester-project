@@ -6,17 +6,20 @@ public class eventSystemScript : MonoBehaviour
 {
     public Canvas gameOver;
     public Button boutton;
+    public EventSystem eventSystem;
     void Start()
     {
        
     }
     void Update()
     {
-        if (gameOver.enabled == true)
-        {
-            gameObject.GetComponent<EventSystem>().firstSelectedGameObject = boutton.gameObject;
-        }
 
     }
         
+    public void OpenGameOver()
+    {
+        gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(boutton.gameObject);
+        
+    }
 }

@@ -82,7 +82,7 @@ public class PlayerLife : MonoBehaviour
     public void Death()
     {
         hp = maxHP;
-        GameOver.gameObject.SetActive(true);
+        GameOver.GetComponent<eventSystemScript>().OpenGameOver();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
