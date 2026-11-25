@@ -46,21 +46,17 @@ public class PlayerLife : MonoBehaviour
     public void Heal()
     {
         Debug.Log("gaigned life !");
-        heartImage += 1;
-        if (heartImage > 2 && hp < maxHP)
+        if (hp < maxHP)
         {
-            hp += 1;
-            heartImage = 1;
+            heartImage += 1;
+            if (heartImage > 2)
+            {
+                hp += 1;
+                heartImage = 1;                
+            }
             hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = true;
         }
-        else if (heartImage <= 2 && hp < maxHP)
-        {
-            hearts.transform.GetChild(hp - 1).transform.GetChild(heartImage).GetComponent<Image>().enabled = true;
-        }
-        else 
-        {
-            hp = maxHP;
-        }
+        
            
     }
 
