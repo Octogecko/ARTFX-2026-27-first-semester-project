@@ -19,12 +19,14 @@ public class InteractionUI : MonoBehaviour
 
     public void VisibleInteraction(string text)
     {
+        Debug.Log(text);
         interactibleText.gameObject.SetActive(true);
         interactibleText.text = text;
     }
 
     public void HideInteraction()
     {
+        Debug.Log("a plu le txt");
         interactibleText.gameObject.SetActive(true);
     }
 }
