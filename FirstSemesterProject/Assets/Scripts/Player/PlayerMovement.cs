@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Speed & direction
+    [Header("Speed & direction")]
+
     private float speed;
     [SerializeField] private float baseSpeed = 3f;
     [SerializeField] private float maxSpeed = 6f;
@@ -17,17 +19,28 @@ public class PlayerMovement : MonoBehaviour
     private bool returningStick = false;
     private float lastMagnitude = 0f;
 
-    // Time
+    [Header("Time")]
+
     [SerializeField] private float timeBeforeDirectionChange = 0.08f;
     private float changeTimer;
     private bool isChanging = false;
     private Vector2 changingDirection;
 
+    [Header("Switches")]
+
+    [SerializeField] private GameObject grapplingHook;
+    [SerializeField] private bool grapplingHookUnlocked;
+
+    [Header("References")]
+
+    public GameObject PauseMenu;
     private Rigidbody2D _rb;
+    private Scimitar scimitar;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        scimitar = transform.GetChild(0).GetComponent<Scimitar>();
         speed = baseSpeed;
     }
 
@@ -112,28 +125,35 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && !scimitar.attacking)
+        {
+            scimitar.Attack();
+        }
+    }
+
+    public void OnGrapplingHook(InputAction.CallbackContext context)
+    {
+        if (context.started && grapplingHookUnlocked)
+        {
+            Instantiate(grapplingHook, transform.position, transform.rotation);
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PauseMenu.SetActive(!PauseMenu.activeSelf);
+            Time.timeScale = Convert.ToInt16(Time.timeScale == 0);
+        }
+    }
+
     private void ChangeDirection(Vector2 newDirection)
     {
         direction = newDirection;
-        /*if (Mathf.Abs(direction.x) >= Mathf.Abs(direction.y))
-        {
-            GetComponent<Animator>().SetBool("back", false);
-            GetComponent<Animator>().SetBool("side", true);
-            GetComponent<SpriteRenderer>().flipX = direction.x <= 0;
-        }
-        else
-        {
-            if (direction.y >= 0)
-            {
-                GetComponent<Animator>().SetBool("back", true);
-                GetComponent<Animator>().SetBool("side", false);
-            }
-            else
-            {
-                GetComponent<Animator>().SetBool("back", false);
-                GetComponent<Animator>().SetBool("side", false);
-            }
-            GetComponent<SpriteRenderer>().flipX = false;
-        }*/
+        float alpha = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, alpha);
     }
 }
