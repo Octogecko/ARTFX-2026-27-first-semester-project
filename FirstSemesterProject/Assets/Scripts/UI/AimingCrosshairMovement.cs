@@ -6,6 +6,8 @@ public class AimingCrosshairMovement : MonoBehaviour
     [SerializeField] private float startingDistance = 3f;
     [SerializeField] private float speed = 5f;
 
+    private GameObject[] lockableObjects;
+    public GameObject lockedObject = null;
     private GameObject player;
     private float grapplingHookRange;
     private Vector2 mousePosition;
@@ -24,6 +26,11 @@ public class AimingCrosshairMovement : MonoBehaviour
         FollowCrosshair();
     }
 
+    private void OnDisable()
+    {
+        lockedObject = null;
+    }
+
     void Update()
     {
         if (GetMousePosition() != mousePosition && movement == Vector3.zero)
@@ -39,6 +46,24 @@ public class AimingCrosshairMovement : MonoBehaviour
         {
             transform.localPosition = transform.localPosition.normalized * grapplingHookRange;
             FollowCrosshair();
+        }
+
+        lockableObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        if (lockableObjects.Length > 0)
+        {
+            GameObject closestObject = null;
+            foreach (GameObject obj in lockableObjects)
+            {
+                if (closestObject == null && Vector3.Distance(transform.position, obj.transform.position) < grapplingHookRange)
+                {
+                    closestObject = obj;
+                }
+                else if (closestObject != null && Vector3.Distance(transform.position, obj.transform.position) < Vector3.Distance(transform.position, closestObject.transform.position))
+                {
+                    closestObject = obj;
+                }
+            }
+            lockedObject = closestObject;
         }
 
         mousePosition = GetMousePosition();

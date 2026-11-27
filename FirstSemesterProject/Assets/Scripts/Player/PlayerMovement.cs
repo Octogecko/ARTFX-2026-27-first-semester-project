@@ -154,8 +154,11 @@ public class PlayerMovement : MonoBehaviour
         {
             GameObject hook = Instantiate(grapplingHook, transform.position, transform.rotation);
             hook.GetComponentInChildren<GrapplingHook>().range = range[grapplingHookLevel];
-            // hook.GetComponentInChildren<GrapplingHook>().SetTarget(GameObject.FindGameObjectWithTag("Enemy"));
-            
+            GameObject locked = crosshair.GetComponentInChildren<AimingCrosshairMovement>().lockedObject;
+            if (CameraMovement.state == CameraMovement.CameraState.AIMING && locked != null)
+            {
+                hook.GetComponentInChildren<GrapplingHook>().SetTarget(locked);
+            }
         }
     }
 
