@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        if (CameraMovement.state != CameraMovement.CameraState.AIMING) // probablement à changer
+        if (CameraMovement.state != CameraMovement.CameraState.AIMING)
         {
             Vector2 input = context.ReadValue<Vector2>();
 
@@ -172,13 +172,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
+            direction = Vector3.zero;
             CameraMovement.state = CameraMovement.CameraState.AIMING;
             crosshair.SetActive(true);
+            this.enabled = false;
         }
         else if (context.canceled)
         {
             CameraMovement.state = CameraMovement.CameraState.NORMAL;
             crosshair.SetActive(false);
+            this.enabled = true;
         }
     }
 
