@@ -197,8 +197,8 @@
                 {
                     "name": "",
                     "id": "0c7a2b2e-efc6-4243-bf59-a392d33d0b56",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Grappling Hook",
@@ -219,7 +219,7 @@
                 {
                     "name": "",
                     "id": "fae1030d-6767-41d6-a9a6-c1cb332f779d",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
