@@ -15,7 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Prototype.unity
     guid: 69c90372a6d6655439060042d5bf8b08
   - enabled: 1
-    path: Assets/Scenes/CreditScene.unity
-    guid: b61d62b4e541a704d88634d07ddd1ffc
+    path: Assets/Scenes/Prototype2.unity
+    guid: c952021a6d029054dabc60d4c802941f
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: e76e04bfa7999ce499011e289782471e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

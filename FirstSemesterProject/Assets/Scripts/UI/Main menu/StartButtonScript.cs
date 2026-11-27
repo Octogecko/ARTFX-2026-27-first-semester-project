@@ -16,6 +16,7 @@ public class StartButtonScript : MonoBehaviour
     }
     public void ChangeScene()
     {
-        SceneManager.LoadScene(2);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(3);
     }
 }
