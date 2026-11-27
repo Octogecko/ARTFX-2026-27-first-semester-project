@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,8 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Switches")]
 
-    [SerializeField] private GameObject grapplingHook;
     [SerializeField] private bool grapplingHookUnlocked;
+
+    [Header("Grappling Hook")]
+
+    [SerializeField] private GameObject grapplingHook;
+    [SerializeField] private GameObject crosshair;
+    [SerializeField] private float[] range = new float[] { 5f, 6f, 7f, 8f };
+    [SerializeField] private int grapplingHookLevel = 1;
 
     [Header("References")]
 
@@ -39,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false; // This SHOULD move
+
         _rb = GetComponent<Rigidbody2D>();
         scimitar = transform.GetChild(0).GetComponent<Scimitar>();
         speed = baseSpeed;
@@ -87,41 +96,47 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-
-        if (context.started)
+        if (CameraMovement.state != CameraMovement.CameraState.AIMING)
         {
-            speed = baseSpeed;
-            // GetComponent<Animator>().SetBool("walking", true);
-        }
+            Vector2 input = context.ReadValue<Vector2>();
 
-        if (!context.canceled && input != Vector2.zero)
-        {
-            slowingDown = false;
-            accelerating = true;
-            wasDiagonal = direction.x != 0 && direction.y != 0;
-            nowCardinal = (input.x == 0) != (input.y == 0);
-            returningStick = input.magnitude < lastMagnitude - 0.01f;
-            lastMagnitude = input.magnitude;
-
-            if ((wasDiagonal && nowCardinal) || returningStick)
+            if (context.started)
             {
-                changingDirection = input;
-                changeTimer = timeBeforeDirectionChange;
-                isChanging = true;
+                speed = baseSpeed;
+                // GetComponent<Animator>().SetBool("walking", true);
+            }
+
+            if (!context.canceled && input != Vector2.zero)
+            {
+                CameraMovement.state = CameraMovement.CameraState.MOVING;
+
+                slowingDown = false;
+                accelerating = true;
+                wasDiagonal = direction.x != 0 && direction.y != 0;
+                nowCardinal = (input.x == 0) != (input.y == 0);
+                returningStick = input.magnitude < lastMagnitude - 0.01f;
+                lastMagnitude = input.magnitude;
+
+                if ((wasDiagonal && nowCardinal) || returningStick)
+                {
+                    changingDirection = input;
+                    changeTimer = timeBeforeDirectionChange;
+                    isChanging = true;
+                }
+                else
+                {
+                    isChanging = false;
+                    ChangeDirection(input);
+                }
             }
             else
             {
+                CameraMovement.state = CameraMovement.CameraState.NORMAL;
+                lastMagnitude = 0f;
                 isChanging = false;
-                ChangeDirection(input);
+                slowingDown = true;
+                accelerating = false;
             }
-        }
-        else
-        {
-            lastMagnitude = 0f;
-            isChanging = false;
-            slowingDown = true;
-            accelerating = false;
         }
     }
 
@@ -137,7 +152,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started && grapplingHookUnlocked)
         {
-            Instantiate(grapplingHook, transform.position, transform.rotation);
+            GameObject hook = Instantiate(grapplingHook, transform.position, transform.rotation);
+            hook.GetComponentInChildren<GrapplingHook>().range = range[grapplingHookLevel];
+            // hook.GetComponentInChildren<GrapplingHook>().SetTarget(GameObject.FindGameObjectWithTag("Enemy"));
+            
         }
     }
 
@@ -150,10 +168,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void OnAim(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            direction = Vector3.zero;
+            CameraMovement.state = CameraMovement.CameraState.AIMING;
+            crosshair.SetActive(true);
+            this.enabled = false;
+        }
+        else if (context.canceled)
+        {
+            CameraMovement.state = CameraMovement.CameraState.NORMAL;
+            crosshair.SetActive(false);
+            this.enabled = true;
+        }
+    }
+
     private void ChangeDirection(Vector2 newDirection)
     {
         direction = newDirection;
         float alpha = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, alpha);
+    }
+
+    public float GetGrapplingHookRange()
+    {
+        return range[grapplingHookLevel];
     }
 }

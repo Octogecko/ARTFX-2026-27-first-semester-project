@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class eventSystemScript : MonoBehaviour
 {
-    public Canvas gameOver;
+    public Canvas Canva;
     public Button boutton;
     public EventSystem eventSystem;
+
     void Start()
     {
        
