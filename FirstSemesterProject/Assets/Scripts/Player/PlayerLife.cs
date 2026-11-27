@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,7 +81,7 @@ public class PlayerLife : MonoBehaviour
     public void Death()
     {
         hp = maxHP;
-        GameOver.GetComponent<eventSystemScript>().OpenGameOver();
+        GameOver.GetComponent<eventSystemScript>().OpenCanva();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

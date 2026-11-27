@@ -17,10 +17,10 @@ public class eventSystemScript : MonoBehaviour
 
     }
         
-    public void OpenGameOver()
+    public void OpenCanva()
     {
+        Time.timeScale = 0;
         gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(boutton.gameObject);
-        
+        eventSystem.SetSelectedGameObject(boutton.gameObject);        
     }
 }
