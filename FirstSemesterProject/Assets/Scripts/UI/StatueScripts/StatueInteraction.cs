@@ -17,7 +17,7 @@ public class StatueInteraction : MonoBehaviour
 
     }
 
-    private void Interaction(InputAction.CallbackContext context)
+    private void Interaction(InputAction.CallbackContext context) //Fonction qui n'est appelée a aucun moment...
     {
         if (context.started && inZone)
         {
