@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3400650932408150480}
-  - component: {fileID: -1830438023149071098}
   m_Layer: 0
   m_Name: GrapplingHook
   m_TagString: Untagged
@@ -142,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chain
   expandSpeed: 20
   xOffset: 0
-  range: 5
+  range: 8
   boxHeight: 2
   endingEnemyDistance: 1.5
   endingWallDistance: 0
