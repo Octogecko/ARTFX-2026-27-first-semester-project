@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3400650932408150480}
-  - component: {fileID: -1830438023149071098}
   m_Layer: 0
   m_Name: GrapplingHook
   m_TagString: Untagged
@@ -48,7 +47,7 @@ GameObject:
   - component: {fileID: 5101827622776111297}
   m_Layer: 0
   m_Name: Chain
-  m_TagString: Untagged
+  m_TagString: GrapplingHook
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
