@@ -30,6 +30,10 @@ public class AimingCrosshairMovement : MonoBehaviour
         {
             FollowMouse();
         }
+        else if (mousePosition == GetMousePosition() && transform.position != (Vector3)GetMousePosition())
+        {
+            FollowCrosshair();
+        }
 
         if ((player.transform.position - transform.position).sqrMagnitude > grapplingHookRange * grapplingHookRange)
         {
@@ -42,7 +46,6 @@ public class AimingCrosshairMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(movement.ToString());
         transform.position += movement * speed * Time.fixedDeltaTime;
     }
 
@@ -58,20 +61,20 @@ public class AimingCrosshairMovement : MonoBehaviour
             movement = Vector3.zero;
         }
     }
-
     private Vector2 GetMousePosition()
     {
-        return Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        return Mouse.current.position.ReadValue();
     }
 
     private void FollowMouse()
     {
-        transform.position = GetMousePosition();
+        transform.position = (Vector2) Camera.main.ScreenToWorldPoint(GetMousePosition());
 
     }
 
     private void FollowCrosshair()
     {
         Mouse.current.WarpCursorPosition(Camera.main.WorldToScreenPoint(transform.position));
+        mousePosition = GetMousePosition();
     }
 }
