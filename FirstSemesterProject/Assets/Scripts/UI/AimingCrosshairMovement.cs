@@ -5,6 +5,7 @@ public class AimingCrosshairMovement : MonoBehaviour
 {
     [SerializeField] private float startingDistance = 3f;
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float aimRange = 1f;
 
     private GameObject[] lockableObjects;
     public GameObject lockedObject = null;
@@ -54,7 +55,7 @@ public class AimingCrosshairMovement : MonoBehaviour
             GameObject closestObject = null;
             foreach (GameObject obj in lockableObjects)
             {
-                if (closestObject == null && Vector3.Distance(transform.position, obj.transform.position) < grapplingHookRange)
+                if (closestObject == null && Vector3.Distance(transform.position, obj.transform.position) < aimRange)
                 {
                     closestObject = obj;
                 }
@@ -67,6 +68,11 @@ public class AimingCrosshairMovement : MonoBehaviour
         }
 
         mousePosition = GetMousePosition();
+
+        float opposite = transform.position.y - player.transform.position.y;
+        float adjacent = transform.position.x - player.transform.position.x;
+        float alpha = Mathf.Atan2(opposite, adjacent) * Mathf.Rad2Deg;
+        player.transform.rotation = Quaternion.Euler(0, 0, alpha);
     }
 
     private void FixedUpdate()

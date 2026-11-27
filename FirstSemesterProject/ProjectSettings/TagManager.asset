@@ -8,6 +8,7 @@ TagManager:
   - GrapplingHook
   - Enemy
   - Wall
+  - Life
   layers:
   - Default
   - TransparentFX
